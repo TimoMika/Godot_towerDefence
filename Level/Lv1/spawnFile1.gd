@@ -9,7 +9,7 @@
 var waves=[
 [{#wave1
 	amount = 3,
-	type = 1,
+	type = 2,
 	pause = 1,
 	tick = 1
 }],
