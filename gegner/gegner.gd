@@ -8,6 +8,8 @@ var offset = 0
 onready var curve_length = get_parent().get_curve().get_baked_length()
 export var speed = 50
 export var dmg = 1
+var leben = 100;
+
 func _ready():
 	set_process(true)
 

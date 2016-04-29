@@ -8,7 +8,7 @@ var map = 1
 var lv = 1
 
 var packedGegner = load("res://gegner/gegner.tscn")
-var spawnFile = load("res://Level/Lv" + str(map) + "/spawnFile" + str(lv) + ".gd").new()
+var spawnFile = load("res://level/Lv" + str(map) + "/spawnFile" + str(lv) + ".gd").new()
 onready var timer = get_parent().get_node("Timer")
 
 var wL = spawnFile.waves
@@ -77,8 +77,10 @@ func get_newGegner(id):
 	
 	if id == 1:
 		g.speed = 30
+		g.leben = 100
 	if id == 2:
-		g.speed = 100
+		g.speed = 200
+		g.leben = 80
 	return g
 	
 func removeAllConnections():

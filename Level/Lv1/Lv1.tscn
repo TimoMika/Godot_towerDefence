@@ -16,7 +16,7 @@ transform/pos = Vector2( 0, 0.35849 )
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path" type="Path2D" parent="."]
 
 transform/pos = Vector2( 3.81442, 2.19996 )
 transform/scale = Vector2( 1.1192, 1.06875 )
