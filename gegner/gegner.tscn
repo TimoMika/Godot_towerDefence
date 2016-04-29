@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://test path.gd" type="Script" id=1]
+[ext_resource path="res://gegner/gegner.gd" type="Script" id=1]
 [ext_resource path="res://gegner/GegnerLv1.png" type="Texture" id=2]
 
 [node name="PathFollow2D" type="PathFollow2D"]
@@ -13,9 +13,12 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 script/script = ExtResource( 1 )
+speed = 4
+dmg = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 
+transform/scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
 
