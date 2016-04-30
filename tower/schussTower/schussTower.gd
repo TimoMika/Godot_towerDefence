@@ -26,7 +26,7 @@ func _process(delta):
 	
 func shoot():
 	#print("shoot")
-	if tarGeg != null:
+	if tarGeg != null && level.energy >= energyCost:
 		newProjectile()
 		
 func refreshRot():
