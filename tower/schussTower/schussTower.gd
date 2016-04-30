@@ -4,10 +4,12 @@ extends Node
 onready var bot = get_node("bot")
 onready var top = bot.get_node("top")
 onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectile.tscn")
+onready var level = get_node("/root/Level")
 var tick = 0.5
 var dmg = 10
 var cost = 40
 var lv = 1
+var energyCost = 2
 var schootRange = 150
 var timer = Timer.new()
 var tarGeg
@@ -26,7 +28,7 @@ func shoot():
 	#print("shoot")
 	if tarGeg != null:
 		newProjectile()
-
+		
 func refreshRot():
 	tarGeg = null
 
@@ -38,6 +40,7 @@ func refreshRot():
 			break
 	
 func newProjectile():
+	level.changeEnergy(-energyCost)
 	#print("projectile")
 	#print("child count", get_child_count())
 	var projectile = packedProjectil.instance()
