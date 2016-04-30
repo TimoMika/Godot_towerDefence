@@ -1,14 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://UI.gd" type="Script" id=1]
 [ext_resource path="res://textures/BackLv1.png" type="Texture" id=2]
 [ext_resource path="res://loadGegner.gd" type="Script" id=3]
-[ext_resource path="res://tower/tower.tscn" type="PackedScene" id=4]
-
-[sub_resource type="Curve2D" id=1]
-
-bake_interval = 5.0
-_data = { "points":Vector2Array( 0, 0, 0, 0, 702.83, 720.975, 0, 0, 0, 0, 695.074, 385.241, 0, 0, 0, 0, 535.517, 381.916, 0, 0, 0, 0, 527.761, 579.146, 0, 0, 0, 0, 184.271, 580.254, 0, 0, 0, 0, 186.487, 128.177, 0, 0, 0, 0, 844.658, 142.581, 0, 0, 0, 0, 838.01, 480.531, 0, 0, 0, 0, 1028.59, 479.423 ) }
 
 [node name="Node" type="Node"]
 
@@ -22,7 +16,7 @@ centered = false
 
 [node name="Path" type="Path2D" parent="."]
 
-curve = SubResource( 1 )
+curve = null
 script/script = ExtResource( 3 )
 frequenz = 10.0
 typ = 0
@@ -35,9 +29,4 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="tower" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 554.135, 325.803 )
-
-
-[editable path="tower"]

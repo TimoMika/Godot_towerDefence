@@ -21,7 +21,7 @@ func cGegner():
 	return current["gegner"]
 
 
-func _ready():
+func path_curve_loaded():
 	spawnNextGroup()
 
 func spawnNextGroup():
