@@ -8,8 +8,8 @@
 
 var waves=[
 [{#wave1
-	amount = 3,
-	type = 2,
+	amount = 20,
+	type = 1,
 	pause = 1,
 	tick = 1
 }],

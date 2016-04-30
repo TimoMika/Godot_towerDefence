@@ -25,7 +25,7 @@ func _ready():
 	spawnNextGroup()
 
 func spawnNextGroup():
-	print("current wave: ",cWave()," current group: ",cGroup())
+	#print("current wave: ",cWave()," current group: ",cGroup())
 	
 	#reset the gegner couter when a new group starts
 	current["gegner"] = 0
@@ -44,7 +44,7 @@ func spawnNextGroup():
 		print("all waves spawned")
 
 func startGroup():
-	print("startGroup")
+	#print("startGroup")
 	var group = wL[cWave()][cGroup()]
 	#erster Gegner am anfang ohne das zeit vegangen ist
 	spawnGegners(group)
@@ -56,7 +56,7 @@ func startGroup():
 	current["group"] += 1
 
 func spawnGegners(group):
-	print("spawnGegner")
+	#print("spawnGegner")
 	#do we need more gegners in this wave ?
 	if group["amount"] > cGegner():
 		add_child(get_newGegner(group["type"]))
@@ -76,15 +76,15 @@ func get_newGegner(id):
 	g.get_node("Sprite").set_texture(load("res://gegner/gegnerLv" + str(id) + ".png"))
 	
 	if id == 1:
-		g.speed = 30
-		g.lp = 100
+		g.set_health(1000)
+		g.set_speed(30)
 	if id == 2:
-		g.speed = 200
-		g.lp = 80
+		g.set_speed(200)
+		g.set_health(80)
 	return g
 	
 func removeAllConnections():
-	print("removeAllConnections")
+	#print("removeAllConnections")
 	var l = timer.get_signal_connection_list("timeout")
 	for fcn in l:
 		timer.disconnect("timeout",self,fcn["method"])

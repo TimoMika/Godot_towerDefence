@@ -22,7 +22,7 @@ func _process(delta):
 	refreshRot()
 	
 func shoot():
-	print("shoot")
+	#print("shoot")
 	if tarGeg != null:
 		newProjectile()
 
@@ -33,13 +33,15 @@ func refreshRot():
 		var toGeg = g.get_pos()-get_pos()
 		if (toGeg).length() < schootRange:
 			tarGeg = g
-			top.set_rot(toGeg.angle_to(Vector2(1,0)))
+			print(toGeg)
+			top.set_rot(-toGeg.angle_to(Vector2(1,0)))
+
 			break
 	
 func newProjectile():
-	print("projectile")
-	print("child count", get_child_count())
+	#print("projectile")
+	#print("child count", get_child_count())
 	var projectile = packedProjectil.instance()
 	add_child(projectile)
-	projectile.set_pos(Vector2(0,0))
 	projectile.set_rot(top.get_rot())
+	projectile.move_local_x(40)
