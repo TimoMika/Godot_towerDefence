@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12.1457, 12.1051 )
+extents = Vector2( 25.7618, 24.9731 )
 
 [node name="tower" type="Node2D"]
 
@@ -16,28 +16,17 @@ script/script = ExtResource( 1 )
 [node name="bot" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="top" type="Sprite" parent="bot"]
 
 texture = ExtResource( 3 )
 
-[node name="Area2D" type="Area2D" parent="."]
-
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 2, -0, 0, 2, -0.853111, -0.407814 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
-[node name="shape" type="CollisionShape2D" parent="Area2D"]
+[node name="shape" type="CollisionShape2D" parent="." groups=[ "UIshapes" ]]
 
 transform/pos = Vector2( -0.853111, -0.407814 )
-transform/scale = Vector2( 2, 2 )
 shape = SubResource( 1 )
-trigger = false
+trigger = true
 _update_shape_index = 0
 
 

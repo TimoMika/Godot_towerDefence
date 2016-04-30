@@ -13,7 +13,6 @@ onready var health = get_node("rotFix/healthbar")
 
 func _ready():
 	set_process(true)
-	print(lp,"lp")
 	health.set_max(lp)
 	health.set_value(lp)
 
@@ -21,8 +20,7 @@ func set_speed(sp):
 	speed = sp
 func set_health(hlth):
 	lp = hlth
-	print(hlth,"hp")
-
+	
 func _process(delta):
 	offset += delta * speed
 	set_offset(offset)

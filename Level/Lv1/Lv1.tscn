@@ -37,7 +37,7 @@ autostart = false
 
 [node name="tower" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 620.003, 446.135 )
+transform/pos = Vector2( 554.135, 325.803 )
 
 
 [editable path="tower"]
