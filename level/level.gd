@@ -2,7 +2,10 @@
 extends Node
 
 #var shapeChecker = RectangleShape2D.new()
-onready var packedTower = load("res://tower/tower.tscn")
+var packedTower = load("res://tower/tower.tscn")
+var packedBuilding = load("res://Buildings/building.tscn")
+var generatorScript = load("res://Buildings/generator/generator.gd")
+var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
 var lives = 100
 var money = 100
 var energy = 100
@@ -14,18 +17,28 @@ func _ready():
 	changeEnergy(0)
 func _input(event):
 	build_tower(event)
+	build_building(event)
 
 
 
 func build_tower(event):
 	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
 		var t = packedTower.instance()
+		t.set_script(schussTowerScript)
 		if not Col_in_UIshape_List(event.pos,t.get_node("shape").get_shape()) && money >= t.cost:
 			changeMoney(-t.cost)
 			t.set_pos(event.pos)
 			add_child(t)
-			t.get_node("shape").add_to_group("UIshapes")
-			
+
+func build_building(event):
+	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_RIGHT && event.is_pressed():
+		var b = packedBuilding.instance()
+		b.set_script(generatorScript)
+		if not Col_in_UIshape_List(event.pos,b.get_node("shape").get_shape()) && money >= b.cost:
+			changeMoney(-b.cost)
+			b.set_pos(event.pos)
+			add_child(b)
+
 func Col_in_UIshape_List(pos,shape):
 	for node in get_tree().get_nodes_in_group("UIshapes"):
 #		print("transform ",node.get_parent().get_transform())

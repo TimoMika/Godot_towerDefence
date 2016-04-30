@@ -3,6 +3,11 @@ extends Node
 
 onready var bot = get_node("bot")
 onready var top = bot.get_node("top")
+
+var botTex = load("res://tower/schussTower/LaserTowerBase.png")
+var topTex = load("res://tower/schussTower/LaserTowerGun.png")
+var shape = load("res://tower/schussTower/shape.tres")
+
 onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectile.tscn")
 onready var level = get_node("/root/Level")
 var tick = 0.5
@@ -16,11 +21,14 @@ var timer = Timer.new()
 var tarGeg
 
 func _ready():
+	bot.set_texture(botTex)
+	top.set_texture(topTex)
 	add_child(timer)
 	timer.set_wait_time(tick)
 	timer.start()
 	timer.connect("timeout",self,"shoot")
 	set_process(true)
+	get_node("shape").add_to_group("UIshapes")
 
 func _process(delta):
 	refreshRot()

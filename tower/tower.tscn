@@ -3,11 +3,7 @@
 [ext_resource path="res://tower/schussTower/schussTower.gd" type="Script" id=1]
 [ext_resource path="res://tower/schussTower/LaserTowerBase.png" type="Texture" id=2]
 [ext_resource path="res://tower/schussTower/LaserTowerGun.png" type="Texture" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 25.7618, 24.9731 )
+[ext_resource path="res://tower/schussTower/shape.tres" type="Shape2D" id=4]
 
 [node name="tower" type="Node2D"]
 
@@ -25,7 +21,7 @@ texture = ExtResource( 3 )
 [node name="shape" type="CollisionShape2D" parent="." groups=[ "UIshapes" ]]
 
 transform/pos = Vector2( -0.853111, -0.407814 )
-shape = SubResource( 1 )
+shape = ExtResource( 4 )
 trigger = true
 _update_shape_index = 0
 

@@ -25,11 +25,11 @@ func get_newGegner(id):
 	
 	g.get_node("Sprite").set_texture(load("res://gegner/gegnerLv" + str(id) + ".png"))
 	if id == 1:
-		g.set_health(1000)
+		g.set_health(500)
 		g.set_speed(30)
 		g.set_loot(30)
 	if id == 2:
-		g.set_speed(200)
+		g.set_speed(100)
 		g.set_health(100)
 		g.set_loot(60)
 	return g
