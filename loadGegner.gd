@@ -77,10 +77,10 @@ func get_newGegner(id):
 	
 	if id == 1:
 		g.speed = 30
-		g.leben = 100
+		g.lp = 100
 	if id == 2:
 		g.speed = 200
-		g.leben = 80
+		g.lp = 80
 	return g
 	
 func removeAllConnections():

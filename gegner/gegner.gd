@@ -8,9 +8,10 @@ var offset = 0
 onready var curve_length = get_parent().get_curve().get_baked_length()
 export var speed = 50
 export var dmg = 1
-var leben = 100;
-
+var lp = 100;
+onready var health = get_node("rotFix/healthbar")
 func _ready():
+	health.set_max(lp)
 	set_process(true)
 
 func _process(delta):
@@ -22,3 +23,8 @@ func _process(delta):
 		#make demage
 		#global.lives -= dmg
 		free()
+	if health.get_value() <= 0:
+		print("TOOOOOOOT")
+		free()
+func dealDMG(dmg):
+	health.set_value(health.get_value() - dmg)
