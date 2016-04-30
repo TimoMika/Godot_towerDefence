@@ -6,6 +6,7 @@ onready var top = bot.get_node("top")
 onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectile.tscn")
 var tick = 0.5
 var dmg = 10
+var cost = 40
 var lv = 1
 var schootRange = 150
 var timer = Timer.new()

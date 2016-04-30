@@ -2,7 +2,7 @@
 extends Sprite
 
 export var dmg = 10
-export var speed = 100
+export var speed = 160
 func _ready():
 	
 	set_process(true)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://UI.gd" type="Script" id=1]
-[ext_resource path="res://textures/BackLv1.png" type="Texture" id=2]
+[ext_resource path="res://level/level.gd" type="Script" id=1]
+[ext_resource path="res://BackLv1.png" type="Texture" id=2]
 [ext_resource path="res://loadGegner.gd" type="Script" id=3]
 
-[node name="Node" type="Node"]
+[node name="Level" type="Node"]
 
 script/script = ExtResource( 1 )
 
@@ -28,5 +28,19 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="MoneyLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 16.0
+margin/top = 19.0
+margin/right = 56.0
+margin/bottom = 32.0
+text = "Money:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

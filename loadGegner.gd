@@ -20,8 +20,21 @@ func cGroup():
 func cGegner():
 	return current["gegner"]
 
-
-func path_curve_loaded():
+func get_newGegner(id):
+	var g = packedGegner.instance()
+	
+	g.get_node("Sprite").set_texture(load("res://gegner/gegnerLv" + str(id) + ".png"))
+	if id == 1:
+		g.set_health(1000)
+		g.set_speed(30)
+		g.set_loot(30)
+	if id == 2:
+		g.set_speed(200)
+		g.set_health(100)
+		g.set_loot(60)
+	return g
+	
+func curve_loaded():
 	spawnNextGroup()
 
 func spawnNextGroup():
@@ -68,20 +81,6 @@ func spawnGegners(group):
 		timer.set_wait_time(group["pause"])
 		timer.connect("timeout",self,"spawnNextGroup")
 		timer.start() #restart timer with new waitTime
-
-
-func get_newGegner(id):
-	var g = packedGegner.instance()
-	
-	g.get_node("Sprite").set_texture(load("res://gegner/gegnerLv" + str(id) + ".png"))
-	
-	if id == 1:
-		g.set_health(1000)
-		g.set_speed(30)
-	if id == 2:
-		g.set_speed(200)
-		g.set_health(80)
-	return g
 	
 func removeAllConnections():
 	#print("removeAllConnections")
