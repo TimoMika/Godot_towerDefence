@@ -1,8 +1,8 @@
 
 extends Sprite
 
-export var dmg = 10
-export var speed = 160
+onready var dmg = get_parent().dmg
+onready var speed = get_parent().speed
 func _ready():
 	
 	set_process(true)

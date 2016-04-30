@@ -7,10 +7,11 @@ onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectil
 onready var level = get_node("/root/Level")
 var tick = 0.5
 var dmg = 10
+var speed = 250
 var cost = 40
 var lv = 1
 var energyCost = 2
-var schootRange = 150
+var schootRange = 200
 var timer = Timer.new()
 var tarGeg
 
@@ -28,7 +29,7 @@ func shoot():
 	#print("shoot")
 	if tarGeg != null && level.energy >= energyCost:
 		newProjectile()
-		
+
 func refreshRot():
 	tarGeg = null
 
