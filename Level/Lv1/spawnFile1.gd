@@ -32,6 +32,27 @@ var waves=[
 	amount = 2,
 	type = 2,
 	tick = 0.5,
+	pause = 40
+}],
+[{#wave2
+	amount = 20,
+	type = 2,
+	tick = 0.1,
+	pause = 5
+},{
+	amount = 20,
+	type = 1,
+	tick = 1,
+	pause = 10
+},{
+	amount = 40,
+	type = 2,
+	tick = 1,
+	pause = 10
+},{
+	amount = 100,
+	type = 2,
+	tick = 0.3,
 	pause = 4
 }]
 ]
