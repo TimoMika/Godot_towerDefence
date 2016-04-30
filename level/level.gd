@@ -6,19 +6,24 @@ var packedTower = load("res://tower/tower.tscn")
 var packedBuilding = load("res://Buildings/building.tscn")
 var generatorScript = load("res://Buildings/generator/generator.gd")
 var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
-var lives = 100
-var money = 100
-var energy = 100
+var lives = 0
+var maxLives = 100
+var money = 0
+var energy = 0
 var maxEnergy = 100
 func _ready():
 	set_process_input(true)
+	set_process(true)
 	loadLvl(1,1)
-	changeMoney(0)
-	changeEnergy(0)
+	
+	changeMoney(150)
+	changeEnergy(100)
+	changeLives(100)
 func _input(event):
 	build_tower(event)
 	build_building(event)
-
+func _process(delta):
+	changeEnergy(1*delta)
 
 
 func build_tower(event):
@@ -80,16 +85,18 @@ func loadLvl(mapNumber,lvNumber):
 	path.curve_loaded()
 	
 func changeMoney(val):
-
 	money += val
-
 	get_node("MoneyLabel").set_text("Money: " + str(money))
 func changeEnergy(val):
-	print(energy)
 	energy += val
-	print(energy)
 	if energy > maxEnergy:
 		energy = maxEnergy
 	var value = float(energy)/float(maxEnergy)
-	print(value)
 	get_node("EnergyBar").set_value(value)
+func changeLives(val):
+	lives += val
+	if lives > maxLives:
+		lives = maxLives
+	var value = float(lives)/float(maxLives)
+	print(value)
+	get_node("liveBar").set_value(value)

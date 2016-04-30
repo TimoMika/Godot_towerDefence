@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://level/level.gd" type="Script" id=1]
 [ext_resource path="res://BackLv1.png" type="Texture" id=2]
 [ext_resource path="res://loadGegner.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.109497, 0.71875, 0.404604, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
 
 [node name="Level" type="Node"]
 
@@ -54,6 +67,25 @@ margin/bottom = 37.0
 range/min = 0.0
 range/max = 1.0
 range/step = 0.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = true
+
+[node name="liveBar" type="ProgressBar" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 764.0
+margin/top = 46.0
+margin/right = 1010.0
+margin/bottom = 70.0
+custom_styles/fg = SubResource( 1 )
+range/min = 0.0
+range/max = 1.0
+range/step = 1.0
 range/page = 0.0
 range/value = 1.0
 range/exp_edit = false

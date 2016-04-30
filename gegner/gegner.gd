@@ -29,7 +29,7 @@ func _process(delta):
 #	print(get_parent().get_curve().get_baked_length())
 	if curve_length < offset:
 		#make demage
-		level.lives -= dmg
+		level.changeLives(-dmg)
 		queue_free()
 	if health.get_value() <= 0:
 		level.changeMoney(loot)
