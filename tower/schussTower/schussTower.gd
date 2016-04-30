@@ -33,9 +33,7 @@ func refreshRot():
 		var toGeg = g.get_pos()-get_pos()
 		if (toGeg).length() < schootRange:
 			tarGeg = g
-			print(toGeg)
 			top.set_rot(-toGeg.angle_to(Vector2(1,0)))
-
 			break
 	
 func newProjectile():

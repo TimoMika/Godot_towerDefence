@@ -11,6 +11,7 @@ func _process(delta):
 	move_local_x(speed*delta)
 
 func collided(area):
-	#print("collide")
-	area.get_parent().dealDMG(dmg)
-	queue_free()
+	print(area.get_parent().get_type())
+	if area.get_parent().get_type() == "PathFollow2D":
+		area.get_parent().dealDMG(dmg)
+		queue_free()
