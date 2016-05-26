@@ -1,52 +1,30 @@
 
-extends Node
+extends "res://tower/tower.gd"
 
-onready var bot = get_node("bot")
-onready var top = bot.get_node("top")
-
-var botTex = load("res://tower/schussTower/LaserTowerBase.png")
-var topTex = load("res://tower/schussTower/LaserTowerGun.png")
-var shape = load("res://tower/schussTower/shape.tres")
-
-onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectile.tscn")
-onready var level = get_node("/root/Level")
-var tick = 0.5
-var dmg = 10
-var speed = 250
-var cost = 40
-var lv = 1
-var energyCost = 2
-var schootRange = 200
 var timer = Timer.new()
-var tarGeg
+var tick = 0.5
+var speed = 250
+onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectile.tscn")
+
+
+func _init():
+	botTex = load("res://tower/schussTower/SchussTowerBase.png")
+	topTex = load("res://tower/schussTower/SchussTowerGun.png")
+	shape = load("res://tower/schussTower/shape.tres")
 
 func _ready():
-	bot.set_texture(botTex)
-	top.set_texture(topTex)
 	add_child(timer)
 	timer.set_wait_time(tick)
 	timer.start()
 	timer.connect("timeout",self,"shoot")
-	set_process(true)
-	get_node("shape").add_to_group("UIshapes")
 
 func _process(delta):
 	refreshRot()
-	
+
 func shoot():
 	#print("shoot")
 	if tarGeg != null && level.energy >= energyCost:
 		newProjectile()
-
-func refreshRot():
-	tarGeg = null
-
-	for g in get_parent().get_node("Path").get_children():
-		var toGeg = g.get_pos()-get_pos()
-		if (toGeg).length() < schootRange:
-			tarGeg = g
-			top.set_rot(-toGeg.angle_to(Vector2(1,0)))
-			break
 	
 func newProjectile():
 	level.changeEnergy(-energyCost)

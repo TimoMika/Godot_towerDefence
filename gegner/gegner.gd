@@ -31,8 +31,10 @@ func _process(delta):
 		#make demage
 		level.changeLives(-dmg)
 		queue_free()
-	if health.get_value() <= 0:
-		level.changeMoney(loot)
-		free()
+	
+		
 func dealDMG(dmg):
 	health.set_value(health.get_value() - dmg)
+	if health.get_value() <= 0:
+		level.changeMoney(loot)
+		queue_free()

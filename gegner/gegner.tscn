@@ -79,14 +79,14 @@ script/script = ExtResource( 3 )
 
 [node name="healthbar" type="ProgressBar" parent="rotFix"]
 
-rect/scale = Vector2( 0.2, 0.16 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
 margin/left = -14.0
 margin/top = -20.0
 margin/right = 126.0
 margin/bottom = -7.0
+rect/scale = Vector2( 0.2, 0.16 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 range/min = 0.0

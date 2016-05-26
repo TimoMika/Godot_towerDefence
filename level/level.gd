@@ -6,30 +6,44 @@ var packedTower = load("res://tower/tower.tscn")
 var packedBuilding = load("res://Buildings/building.tscn")
 var generatorScript = load("res://Buildings/generator/generator.gd")
 var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
+var laserTowerScript = load("res://tower/laserTower/laserTower.gd")
 var lives = 0
 var maxLives = 100
 var money = 0
 var energy = 0
 var maxEnergy = 100
+var towerType = 1
+
 func _ready():
 	set_process_input(true)
 	set_process(true)
+	
 	loadLvl(1,1)
 	
-	changeMoney(150)
+	changeMoney(1000)
 	changeEnergy(100)
 	changeLives(100)
+	
 func _input(event):
 	build_tower(event)
 	build_building(event)
+	
 func _process(delta):
 	changeEnergy(1*delta)
 
+func createTowerBuyButtons():
+	var button = Button.new()
+	button.set_button_icon(load("res://textures/LaserTowerMenue64.png"))
+	button.set_text("Laser Tower")
+	get_node("TowerBuyMenueContainer").add_child(button)
 
 func build_tower(event):
 	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
 		var t = packedTower.instance()
-		t.set_script(schussTowerScript)
+		if towerType == 0:
+			t.set_script(laserTowerScript)
+		if towerType == 1:
+			t.set_script(schussTowerScript)
 		if not Col_in_UIshape_List(event.pos,t.get_node("shape").get_shape()) && money >= t.cost:
 			changeMoney(-t.cost)
 			t.set_pos(event.pos)
@@ -50,9 +64,17 @@ func Col_in_UIshape_List(pos,shape):
 #		print("selfmade ",Matrix32(0,pos))
 #		print( node.get_shape().collide(Matrix32(0,pos),shape,node.get_parent().get_transform()) )
 #		print(shape.get_extents())
-		print(node)
+#		print("Node: ", node)
 		if node.get_shape().collide(Matrix32(0,pos),shape,node.get_parent().get_transform()):
 			return true
+			
+	for guiNode in get_tree().get_nodes_in_group("Gui_item"):
+#		print("Gui Node: ", guiNode)
+		var guiShape = RectangleShape2D.new()
+		guiShape.set_extents(guiNode.get_rect().size)
+		if guiShape.collide(Matrix32(0,pos),shape,guiNode.get_transform()):
+			return true
+		
 	return false
 
 func loadLvl(mapNumber,lvNumber):
@@ -83,16 +105,18 @@ func loadLvl(mapNumber,lvNumber):
 		node2D.set_pos((p+pNext)*0.5)
 		add_child(node2D)
 	path.curve_loaded()
-	
+
 func changeMoney(val):
 	money += val
 	get_node("MoneyLabel").set_text("Money: " + str(money))
+	
 func changeEnergy(val):
 	energy += val
 	if energy > maxEnergy:
 		energy = maxEnergy
 	var value = float(energy)/float(maxEnergy)
 	get_node("EnergyBar").set_value(value)
+	
 func changeLives(val):
 	lives += val
 	if lives > maxLives:
@@ -100,3 +124,11 @@ func changeLives(val):
 	var value = float(lives)/float(maxLives)
 	print(value)
 	get_node("liveBar").set_value(value)
+
+func _on_LaserTowerButton_pressed():
+	towerType = 0
+	print("Laser Tower")
+
+func _on_SchussTowerButton_pressed():
+	towerType = 1
+	print("SchussTower")

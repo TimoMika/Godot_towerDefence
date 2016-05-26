@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://tower/schussTower/schussTower.gd" type="Script" id=1]
+[ext_resource path="res://tower/tower.gd" type="Script" id=1]
 [ext_resource path="res://tower/schussTower/LaserTowerBase.png" type="Texture" id=2]
 [ext_resource path="res://tower/schussTower/LaserTowerGun.png" type="Texture" id=3]
 [ext_resource path="res://tower/schussTower/shape.tres" type="Shape2D" id=4]
@@ -8,6 +8,7 @@
 [node name="tower" type="Node2D"]
 
 script/script = ExtResource( 1 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="bot" type="Sprite" parent="."]
 

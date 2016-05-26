@@ -3,10 +3,11 @@ extends Sprite
 
 onready var dmg = get_parent().dmg
 onready var speed = get_parent().speed
+
 func _ready():
-	
 	set_process(true)
 	get_node("Area2D").connect("area_enter",self,"collided")
+
 func _process(delta):
 	move_local_x(speed*delta)
 
