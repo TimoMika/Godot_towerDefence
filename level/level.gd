@@ -7,6 +7,9 @@ var packedBuilding = load("res://Buildings/building.tscn")
 var generatorScript = load("res://Buildings/generator/generator.gd")
 var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
 var laserTowerScript = load("res://tower/laserTower/laserTower.gd")
+var blitzTowerScript = load("res://tower/blitzTower/blitzTower.gd")
+var rocketTowerScript = load("res://tower/rocketTower/rocketTower.gd")
+
 var lives = 0
 var maxLives = 100
 var money = 0
@@ -18,7 +21,7 @@ func _ready():
 	set_process_input(true)
 	set_process(true)
 	
-	loadLvl(1,1)
+	loadLvl(get_node("/root/global").getMapNum(),1)
 	
 	changeMoney(1000)
 	changeEnergy(100)
@@ -44,6 +47,11 @@ func build_tower(event):
 			t.set_script(laserTowerScript)
 		if towerType == 1:
 			t.set_script(schussTowerScript)
+		if towerType == 2:
+			t.set_script(blitzTowerScript)
+		if towerType == 3:
+			t.set_script(rocketTowerScript)
+
 		if not Col_in_UIshape_List(event.pos,t.get_node("shape").get_shape()) && money >= t.cost:
 			changeMoney(-t.cost)
 			t.set_pos(event.pos)
@@ -132,3 +140,13 @@ func _on_LaserTowerButton_pressed():
 func _on_SchussTowerButton_pressed():
 	towerType = 1
 	print("SchussTower")
+
+
+func _on_BlitzTowerButton_pressed():
+	towerType = 2
+	print("BlitzTower")
+
+
+func _on_RocketTowerButton_pressed():
+	towerType = 3
+	print("RocketTower")

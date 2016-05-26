@@ -18,10 +18,13 @@ func _ready():
 
 func set_speed(sp):
 	speed = sp
+
 func set_health(hlth):
 	lp = hlth
+
 func set_loot(lt):
 	loot = lt
+
 func _process(delta):
 	offset += delta * speed
 	set_offset(offset)
