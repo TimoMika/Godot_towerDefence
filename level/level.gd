@@ -4,11 +4,16 @@ extends Node
 #var shapeChecker = RectangleShape2D.new()
 var packedTower = load("res://tower/tower.tscn")
 var packedBuilding = load("res://Buildings/building.tscn")
+
 var generatorScript = load("res://Buildings/generator/generator.gd")
+
 var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
+var schussTowerBuildHelp = load("res://tower/schussTower/schussTowerBuildHelp.png")
 var laserTowerScript = load("res://tower/laserTower/laserTower.gd")
 var blitzTowerScript = load("res://tower/blitzTower/blitzTower.gd")
 var rocketTowerScript = load("res://tower/rocketTower/rocketTower.gd")
+
+onready var buildHelp = get_node("BuildHelp")
 
 var lives = 0
 var maxLives = 100
@@ -32,16 +37,18 @@ func _input(event):
 	build_building(event)
 	
 func _process(delta):
-	changeEnergy(1*delta)
+	if not buildHelp.is_hidden():
+		if Input.is_mouse_button_pressed(BUTTON_LEFT):
+			buildHelp.set_pos(get_viewport().get_mouse_pos())
+		else:
+			print("baue")
+			buildHelp.set_hidden(true)
 
-func createTowerBuyButtons():
-	var button = Button.new()
-	button.set_button_icon(load("res://textures/LaserTowerMenue64.png"))
-	button.set_text("Laser Tower")
-	get_node("TowerBuyMenueContainer").add_child(button)
+	changeEnergy(1*delta)
 
 func build_tower(event):
 	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
+
 		var t = packedTower.instance()
 		if towerType == 0:
 			t.set_script(laserTowerScript)
@@ -138,6 +145,8 @@ func _on_LaserTowerButton_pressed():
 	print("Laser Tower")
 
 func _on_SchussTowerButton_pressed():
+	buildHelp.set_texture(schussTowerBuildHelp)
+	buildHelp.set_hidden(false)
 	towerType = 1
 	print("SchussTower")
 
@@ -145,7 +154,6 @@ func _on_SchussTowerButton_pressed():
 func _on_BlitzTowerButton_pressed():
 	towerType = 2
 	print("BlitzTower")
-
 
 func _on_RocketTowerButton_pressed():
 	towerType = 3

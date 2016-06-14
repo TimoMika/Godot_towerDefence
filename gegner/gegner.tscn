@@ -4,10 +4,10 @@
 [ext_resource path="res://gegner/GegnerLv1.png" type="Texture" id=2]
 [ext_resource path="res://gegner/healthBarRotation.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 16.2363
+radius = 10.0
 
 [sub_resource type="StyleBoxFlat" id=2]
 
@@ -57,9 +57,9 @@ texture = ExtResource( 2 )
 [node name="Area" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.6, -0, 0, 1.6, 0, 0 )
+shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 9.8
 linear_damp = 0.1
@@ -69,8 +69,9 @@ collision/mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 
-shape = SubResource( 1 )
-trigger = false
+transform/scale = Vector2( 1.6, 1.6 )
+shape = SubResource( 4 )
+trigger = true
 _update_shape_index = 0
 
 [node name="rotFix" type="Node2D" parent="."]
