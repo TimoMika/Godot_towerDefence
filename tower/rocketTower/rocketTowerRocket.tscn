@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://tower/rocketTower/RocketSchuss.png" type="Texture" id=1]
+[ext_resource path="res://tower/rocketTower/rocketTowerRocket.gd" type="Script" id=2]
+[ext_resource path="res://tower/rocketTower/RocketSchussFuel.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 9.9772
+height = 22.5671
+
+[node name="projectile" type="Sprite"]
+
+transform/scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+
+[node name="RocketArea2D" type="Area2D" parent="."]
+
+transform/pos = Vector2( 0.252255, -1.9371 )
+transform/scale = Vector2( 0.918113, 1 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( -1.53334e-07, -3.50786, 1.05722, -4.62127e-08, -0.537099, -2.25195 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RocketArea2D"]
+
+transform/pos = Vector2( -0.537099, -2.25195 )
+transform/rot = 90.0
+transform/scale = Vector2( 3.50786, 1.05722 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Fuel" type="Particles2D" parent="."]
+
+transform/pos = Vector2( 2.55788, -37.168 )
+transform/scale = Vector2( 1, 0.73501 )
+config/amount = 16
+config/lifetime = 2.4
+config/texture = ExtResource( 3 )
+params/direction = 180.0
+params/spread = 10.0
+params/linear_velocity = 20.0
+params/spin_velocity = 2.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 180.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 3.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/spin_velocity = 1.0
+
+
