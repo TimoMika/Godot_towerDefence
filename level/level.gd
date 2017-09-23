@@ -10,8 +10,11 @@ var generatorScript = load("res://Buildings/generator/generator.gd")
 var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
 var schussTowerBuildHelp = load("res://tower/schussTower/schussTowerBuildHelp.png")
 var laserTowerScript = load("res://tower/laserTower/laserTower.gd")
+var laserTowerBuildHelp = load("res://tower/laserTower/laserTowerBuildHelp.png")
 var blitzTowerScript = load("res://tower/blitzTower/blitzTower.gd")
+var blitzTowerBuildHelp = load("res://tower/blitzTower/blitzTowerBuildHelp.png")
 var rocketTowerScript = load("res://tower/rocketTower/rocketTower.gd")
+var rocketTowerBuildHelp = load("res://tower/rocketTower/rocketTowerBuildHelp.png")
 
 onready var buildHelp = get_node("BuildHelp")
 
@@ -38,11 +41,11 @@ func _input(event):
 	
 func _process(delta):
 	if not buildHelp.is_hidden():
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
-			buildHelp.set_pos(get_viewport().get_mouse_pos())
-		else:
-			print("baue")
-			buildHelp.set_hidden(true)
+		#if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		buildHelp.set_pos(get_viewport().get_mouse_pos())
+		#else:
+			#print("baue")
+			#buildHelp.set_hidden(true)
 
 	changeEnergy(1*delta)
 
@@ -63,6 +66,8 @@ func build_tower(event):
 			changeMoney(-t.cost)
 			t.set_pos(event.pos)
 			add_child(t)
+			buildHelp.set_hidden(true)
+
 
 func build_building(event):
 	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_RIGHT && event.is_pressed():
@@ -156,6 +161,8 @@ func changeLives(val):
 	get_node("liveBar").set_value(value)
 
 func _on_LaserTowerButton_pressed():
+	buildHelp.set_texture(laserTowerBuildHelp)
+	buildHelp.set_hidden(false)
 	towerType = 0
 	print("Laser Tower")
 
@@ -167,9 +174,13 @@ func _on_SchussTowerButton_pressed():
 
 
 func _on_BlitzTowerButton_pressed():
+	buildHelp.set_texture(blitzTowerBuildHelp)
+	buildHelp.set_hidden(false)
 	towerType = 2
 	print("BlitzTower")
 
 func _on_RocketTowerButton_pressed():
+	buildHelp.set_texture(rocketTowerBuildHelp)
+	buildHelp.set_hidden(false)
 	towerType = 3
 	print("RocketTower")

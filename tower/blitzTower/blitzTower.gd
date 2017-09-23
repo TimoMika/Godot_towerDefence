@@ -20,7 +20,7 @@ func _ready():
 	set_draw_behind_parent(false)
 
 func _draw():
-	if tarGeg != null:
+	if tarGeg != null && level.energy >= energyCost:
 		var malen = true
 		var pos = Vector2(get_pos().x, get_pos().y)
 		var posAlt = Vector2(get_pos().x, get_pos().y)
@@ -41,10 +41,11 @@ func _draw():
 			posAlt = pos
 
 func _process(delta):
-	refreshRot()
-	if tarGeg != null && level.energy >= energyCost:
-		tarGegPos = tarGeg.get_pos()
-		tarGeg.dealDMG(dmg * delta)
+	if level.energy >= energyCost:
+		refreshRot()
+		if tarGeg != null:
+			tarGegPos = tarGeg.get_pos()
+			tarGeg.dealDMG(dmg * delta)
 	update()
 
 func refreshRot():

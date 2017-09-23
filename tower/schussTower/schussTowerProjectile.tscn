@@ -11,11 +11,9 @@ height = 20.0
 
 [node name="projectile" type="Sprite"]
 
-transform/scale = Vector2( 0.3, 0.3 )
+transform/scale = Vector2( 0.4, 0.3 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
-dmg = 50
-speed = 100
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -21,7 +21,8 @@ func _ready():
 	dmg = 50
 
 func _process(delta):
-	refreshRot()
+	if level.energy >= energyCost:
+		refreshRot()
 
 func shoot():
 	#print("shoot")

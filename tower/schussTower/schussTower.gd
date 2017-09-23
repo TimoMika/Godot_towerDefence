@@ -2,8 +2,8 @@
 extends "res://tower/tower.gd"
 
 var timer = Timer.new()
-var tick = 0.5
-var speed = 250
+var tick = 0.6
+var speed = 450
 onready var packedProjectil = load("res://tower/schussTower/schussTowerProjectile.tscn")
 
 
@@ -19,7 +19,8 @@ func _ready():
 	timer.connect("timeout",self,"shoot")
 
 func _process(delta):
-	refreshRot()
+	if level.energy >= energyCost:
+		refreshRot()
 
 func shoot():
 	#print("shoot")
