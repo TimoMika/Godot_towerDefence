@@ -102,6 +102,18 @@ func loadLvl(mapNumber,lvNumber):
 	path.lv = lvNumber
 	var curve = load("res://level/Lv" + str(mapNumber) + "/curveMap" + str(mapNumber) + ".tres")
 	path.set_curve(curve)
+	
+	#place Sprite for Ziel at right spot with right rotation
+	var sprite_Ziel = get_node("Sprite_ziel")
+	#var zielDir = Vector2((curve.get_point_pos(curve.get_point_count() - 2).x - curve.get_point_pos(curve.get_point_count() - 1).x), (curve.get_point_pos(curve.get_point_count() - 2).y - curve.get_point_pos(curve.get_point_count() - 1).y))
+	var zielDir = Vector2(getNodePos(curve, 2) - getNodePos(curve, 1))
+	zielDir = zielDir.normalized()
+	sprite_Ziel.set_rot(zielDir.angle_to(Vector2(-1, 0)))
+	print(zielDir)
+	var posZielX = (getNodePos(curve, 1).x + (zielDir.x * (sprite_Ziel.get_texture().get_width()/2)) +3)
+	var posZielY = (getNodePos(curve, 1).y + (zielDir.y * (sprite_Ziel.get_texture().get_width()/2)) +2)
+	sprite_Ziel.set_pos(Vector2(posZielX, posZielY))
+	
 	#make collision for path
 	for i in range(curve.get_point_count() - 1):
 		var p = curve.get_point_pos(i)
@@ -120,6 +132,9 @@ func loadLvl(mapNumber,lvNumber):
 		node2D.set_pos((p+pNext)*0.5)
 		add_child(node2D)
 	path.curve_loaded()
+
+func getNodePos(curve, offset):
+	return curve.get_point_pos(curve.get_point_count() - offset)
 
 func changeMoney(val):
 	money += val
