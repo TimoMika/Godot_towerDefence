@@ -22,7 +22,7 @@ transform/pos = Vector2( 0.252255, -1.9371 )
 transform/scale = Vector2( 0.918113, 1 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( -1.53334e-07, -3.50786, 1.05722, -4.62127e-08, -0.537099, -2.25195 )
+shapes/0/transform = Matrix32( -1.53345e-07, -3.50814, 1.05722, -4.62126e-08, -0.537099, -0.570088 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -33,9 +33,9 @@ collision/mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RocketArea2D"]
 
-transform/pos = Vector2( -0.537099, -2.25195 )
+transform/pos = Vector2( -0.537099, -0.570088 )
 transform/rot = 90.0
-transform/scale = Vector2( 3.50786, 1.05722 )
+transform/scale = Vector2( 3.50814, 1.05722 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
@@ -46,6 +46,7 @@ transform/pos = Vector2( 2.55788, -37.168 )
 transform/scale = Vector2( 1, 0.73501 )
 config/amount = 16
 config/lifetime = 2.4
+config/process_mode = 1
 config/texture = ExtResource( 3 )
 params/direction = 180.0
 params/spread = 10.0

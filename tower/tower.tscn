@@ -8,7 +8,9 @@
 [node name="tower" type="Node2D"]
 
 script/script = ExtResource( 1 )
-__meta__ = { "_edit_lock_":true }
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="bot" type="Sprite" parent="."]
 
@@ -18,7 +20,9 @@ texture = ExtResource( 2 )
 
 texture = ExtResource( 3 )
 
-[node name="shape" type="CollisionShape2D" parent="." groups=[ "UIshapes" ]]
+[node name="shape" type="CollisionShape2D" parent="." groups=[
+"UIshapes",
+]]
 
 transform/pos = Vector2( -0.853111, -0.407814 )
 shape = ExtResource( 4 )

@@ -11,17 +11,17 @@ var waves=[
 	amount = 5,
 	type = 1,
 	tick = 3,
-	pause = 40
+	pause = 20
 }],
 [{#wave2
 	amount = 2,
 	type = 2,
-	tick = 0.5,
+	tick = 1,
 	pause = 5
 },{
 	amount = 2,
 	type = 2,
-	tick = 0.5,
+	tick = 1,
 	pause = 4
 },{
 	amount = 2,

@@ -34,4 +34,6 @@ func newProjectile():
 	#print("child count", get_child_count())
 	var projectile = packedProjectil.instance()
 	add_child(projectile)
-	projectile.set_rot(top.get_rot())
+	print(top.get_rot())
+	projectile.set_rot(top.get_rot() + (PI/2))
+	projectile.move_local_y(45)

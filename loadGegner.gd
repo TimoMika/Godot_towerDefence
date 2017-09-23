@@ -30,7 +30,7 @@ func get_newGegner(id):
 		g.set_loot(30)
 	if id == 2:
 		g.set_speed(100)
-		g.set_health(100)
+		g.set_health(300)
 		g.set_loot(60)
 	return g
 	

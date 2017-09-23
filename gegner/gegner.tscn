@@ -4,7 +4,7 @@
 [ext_resource path="res://gegner/GegnerLv1.png" type="Texture" id=2]
 [ext_resource path="res://gegner/healthBarRotation.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -57,8 +57,8 @@ texture = ExtResource( 2 )
 [node name="Area" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 1.6, -0, 0, 1.6, 0, 0 )
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1.6, 0, 0, 1.6, 0, 0 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 9.8
@@ -70,7 +70,7 @@ collision/mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 
 transform/scale = Vector2( 1.6, 1.6 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 
@@ -80,14 +80,15 @@ script/script = ExtResource( 3 )
 
 [node name="healthbar" type="ProgressBar" parent="rotFix"]
 
-margin/left = -14.0
-margin/top = -20.0
-margin/right = 126.0
-margin/bottom = -7.0
 rect/scale = Vector2( 0.2, 0.16 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -14.0
+margin/top = -21.0
+margin/right = 126.0
+margin/bottom = -5.0
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 range/min = 0.0

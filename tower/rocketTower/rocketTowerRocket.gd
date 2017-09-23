@@ -45,7 +45,7 @@ func collided(area):
 		for g in get_parent().get_parent().get_node("Path").get_children():
 #			if g.health.get_value() > 0:
 			var toGeg = g.get_pos()-(get_pos() + get_parent().get_pos())
-			print("Dist to " + g.get_name() + " is ", toGeg.length())
+			#print("Dist to " + g.get_name() + " is ", toGeg.length())
 			if (toGeg).length() < expRad:
 				g.dealDMG(dmg)
 				queue_free()
