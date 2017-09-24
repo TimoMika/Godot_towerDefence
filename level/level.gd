@@ -50,7 +50,7 @@ func _process(delta):
 	changeEnergy(1*delta)
 
 func build_tower(event):
-	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
+	if !buildHelp.is_hidden() && event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
 
 		var t = packedTower.instance()
 		if towerType == 0:
