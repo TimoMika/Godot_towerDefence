@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Main_Menue.gd" type="Script" id=1]
 [ext_resource path="res://textures/Background.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Level/Lv1/BackLv1_icon.png" type="Texture" id=4]
 [ext_resource path="res://Level/Lv2/BackLv2_icon.png" type="Texture" id=5]
 [ext_resource path="res://fonts/openSans50.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://fonts/openSans18.fnt" type="BitmapFont" id=7]
 
 [node name="Menue" type="Node"]
 
@@ -56,6 +57,7 @@ items = [ "Level 1", ExtResource( 4 ), false, false, false, 0, 0, null, "", fals
 
 [node name="MenuButton_Quit" type="Button" parent="VBoxContainer"]
 
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -91,6 +93,24 @@ max_lines_visible = -1
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 9.0
+margin/top = 666.0
+margin/right = 599.0
+margin/bottom = 714.0
+custom_fonts/font = ExtResource( 7 )
+text = "Made by Timo and Mika
+Visit https://github.com/TimoMika/Godot_towerDefence for more Info"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="pressed" from="VBoxContainer/MenuButton_Quit" to="." method="_on_MenuButton_Quit_pressed"]
 
