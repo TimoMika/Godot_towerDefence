@@ -3,9 +3,10 @@ extends Node
 
 #var shapeChecker = RectangleShape2D.new()
 var packedTower = load("res://tower/tower.tscn")
-var packedBuilding = load("res://Buildings/building.tscn")
+var packedBuilding = load("res://buildings/building.tscn")
 
-var generatorScript = load("res://Buildings/generator/generator.gd")
+var generatorScript = load("res://buildings/generator/generator.gd")
+var generatorBuildHelp = load("res://buildings/generator/generator.png")
 
 var schussTowerScript = load("res://tower/schussTower/schussTower.gd")
 var schussTowerBuildHelp = load("res://tower/schussTower/schussTowerBuildHelp.png")
@@ -17,13 +18,14 @@ var rocketTowerScript = load("res://tower/rocketTower/rocketTower.gd")
 var rocketTowerBuildHelp = load("res://tower/rocketTower/rocketTowerBuildHelp.png")
 
 onready var buildHelp = get_node("BuildHelp")
+onready var buildHelpShape = get_node("BuildHelp/BuildHelpShape")
 
 var lives = 0
 var maxLives = 100
 var money = 0
 var energy = 0
 var maxEnergy = 100
-var towerType = 1
+var buildType = 1
 
 func _ready():
 	set_process_input(true)
@@ -36,30 +38,37 @@ func _ready():
 	changeLives(100)
 	
 func _input(event):
-	build_tower(event)
-	build_building(event)
-	
+	build(event)
+
 func _process(delta):
 	if not buildHelp.is_hidden():
 		#if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		buildHelp.set_pos(get_viewport().get_mouse_pos())
-		#else:
+		if Col_in_UIshape_List((get_viewport().get_mouse_pos()),buildHelpShape.get_shape()):
+			buildHelp.set_modulate(Color(2,1,1))
+		else:
+			buildHelp.set_modulate(Color(1,2,1))
 			#print("baue")
 			#buildHelp.set_hidden(true)
 
 	changeEnergy(1*delta)
 
-func build_tower(event):
+func build(event):
 	if !buildHelp.is_hidden() && event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
+		if buildType > 0:
+			build_tower(event)
+		elif buildType < 0:
+			build_building(event)
 
+func build_tower(event):
 		var t = packedTower.instance()
-		if towerType == 0:
+		if buildType == 1:
 			t.set_script(laserTowerScript)
-		if towerType == 1:
+		if buildType == 2:
 			t.set_script(schussTowerScript)
-		if towerType == 2:
+		if buildType == 3:
 			t.set_script(blitzTowerScript)
-		if towerType == 3:
+		if buildType == 4:
 			t.set_script(rocketTowerScript)
 
 		if not Col_in_UIshape_List(event.pos,t.get_node("shape").get_shape()) && money >= t.cost:
@@ -70,13 +79,14 @@ func build_tower(event):
 
 
 func build_building(event):
-	if event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_RIGHT && event.is_pressed():
 		var b = packedBuilding.instance()
-		b.set_script(generatorScript)
+		if buildType == -1:
+			b.set_script(generatorScript)
 		if not Col_in_UIshape_List(event.pos,b.get_node("shape").get_shape()) && money >= b.cost:
 			changeMoney(-b.cost)
 			b.set_pos(event.pos)
 			add_child(b)
+			buildHelp.set_hidden(true)
 
 func Col_in_UIshape_List(pos,shape):
 	for node in get_tree().get_nodes_in_group("UIshapes"):
@@ -162,25 +172,36 @@ func changeLives(val):
 
 func _on_LaserTowerButton_pressed():
 	buildHelp.set_texture(laserTowerBuildHelp)
+	buildHelpShape.set_shape(load("res://tower/laserTower/shape.tres"))
 	buildHelp.set_hidden(false)
-	towerType = 0
+	buildType = 1
 	print("Laser Tower")
 
 func _on_SchussTowerButton_pressed():
 	buildHelp.set_texture(schussTowerBuildHelp)
+	buildHelpShape.set_shape(load("res://tower/schussTower/shape.tres"))
 	buildHelp.set_hidden(false)
-	towerType = 1
+	buildType = 2
 	print("SchussTower")
 
 
 func _on_BlitzTowerButton_pressed():
 	buildHelp.set_texture(blitzTowerBuildHelp)
+	buildHelpShape.set_shape(load("res://tower/blitzTower/shape.tres"))
 	buildHelp.set_hidden(false)
-	towerType = 2
+	buildType = 3
 	print("BlitzTower")
 
 func _on_RocketTowerButton_pressed():
 	buildHelp.set_texture(rocketTowerBuildHelp)
+	buildHelpShape.set_shape(load("res://tower/rocketTower/shape.tres"))
 	buildHelp.set_hidden(false)
-	towerType = 3
+	buildType = 4
 	print("RocketTower")
+
+func _on_GeneratorButton_pressed():
+	buildHelp.set_texture(generatorBuildHelp)
+	buildHelpShape.set_shape(load("res://buildings/generator/shape.tres"))
+	buildHelp.set_hidden(false)
+	buildType = -1
+	print("Generator")

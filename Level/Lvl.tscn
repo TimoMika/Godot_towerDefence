@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://level/level.gd" type="Script" id=1]
 [ext_resource path="res://Level/Lv1/BackLv1.png" type="Texture" id=2]
@@ -9,8 +9,10 @@
 [ext_resource path="res://tower/schussTower/SchussTowerMenue.png" type="Texture" id=7]
 [ext_resource path="res://tower/blitzTower/BlitzTowerMenue.png" type="Texture" id=8]
 [ext_resource path="res://tower/rocketTower/RocketTowerMenue.png" type="Texture" id=9]
-[ext_resource path="res://tower/schussTower/SchussTowerBuildHelp.png" type="Texture" id=10]
-[ext_resource path="res://textures/Ziel.png" type="Texture" id=11]
+[ext_resource path="res://buildings/generator/GeneratorMenue.png" type="Texture" id=10]
+[ext_resource path="res://tower/schussTower/SchussTowerBuildHelp.png" type="Texture" id=11]
+[ext_resource path="res://tower/schussTower/shape.tres" type="Shape2D" id=12]
+[ext_resource path="res://textures/Ziel.png" type="Texture" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -206,16 +208,44 @@ text = "Rocket Tower"
 icon = ExtResource( 9 )
 flat = false
 
+[node name="GeneratorButton" type="Button" parent="TowerBuyMenueContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 296.0
+margin/right = 256.0
+margin/bottom = 366.0
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Generator"
+icon = ExtResource( 10 )
+flat = false
+
 [node name="BuildHelp" type="Sprite" parent="."]
 
 visibility/visible = false
-visibility/opacity = 0.55
-texture = ExtResource( 10 )
+visibility/opacity = 0.7
+texture = ExtResource( 11 )
+
+[node name="BuildHelpShape" type="CollisionShape2D" parent="BuildHelp"]
+
+visibility/visible = false
+shape = ExtResource( 12 )
+trigger = false
+_update_shape_index = -1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite_ziel" type="Sprite" parent="."]
 
 transform/pos = Vector2( 1211.93, 478.241 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [connection signal="pressed" from="TowerBuyMenueContainer/LaserTowerButton" to="." method="_on_LaserTowerButton_pressed"]
 
@@ -224,5 +254,7 @@ texture = ExtResource( 11 )
 [connection signal="pressed" from="TowerBuyMenueContainer/BlitzTowerButton" to="." method="_on_BlitzTowerButton_pressed"]
 
 [connection signal="pressed" from="TowerBuyMenueContainer/RocketTowerButton" to="." method="_on_RocketTowerButton_pressed"]
+
+[connection signal="pressed" from="TowerBuyMenueContainer/GeneratorButton" to="." method="_on_GeneratorButton_pressed"]
 
 
