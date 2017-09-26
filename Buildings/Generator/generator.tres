@@ -1,7 +1,0 @@
-[gd_resource type="RectangleShape2D" format=1]
-
-[resource]
-
-custom_solver_bias = 0.0
-extents = Vector2( 38.2974, 18.7895 )
-
