@@ -37,6 +37,7 @@ draw_bg = true
 
 [node name="PathFollow2D" type="PathFollow2D"]
 
+process/pause_mode = 1
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0

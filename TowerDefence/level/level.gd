@@ -29,7 +29,6 @@ var buildType = 1
 func _ready():
 	set_process_input(true)
 	set_process(true)
-	
 	loadLvl(get_node("/root/global").getMapNum(),1)
 	
 	changeMoney(1000)
@@ -37,7 +36,18 @@ func _ready():
 	changeLives(100)
 	
 func _input(event):
-	build(event)
+	if !get_tree().is_paused():
+		if !buildHelp.is_hidden() && event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
+			build(event)
+		elif !buildHelp.is_hidden() && event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_RIGHT && event.is_pressed():
+			buildHelp.set_hidden(true)
+		if event.is_action_pressed("ui_cancel"):
+			get_tree().set_pause(true)
+			get_node("PauseMenue").set_hidden(false)
+	else:
+		if event.is_action_pressed("ui_cancel"):
+			get_tree().set_pause(false)
+			get_node("PauseMenue").set_hidden(false)
 
 func _process(delta):
 	if not buildHelp.is_hidden():
@@ -53,11 +63,10 @@ func _process(delta):
 	changeEnergy(1*delta)
 
 func build(event):
-	if !buildHelp.is_hidden() && event.type == InputEvent.MOUSE_BUTTON && event.button_index == BUTTON_LEFT && event.is_pressed():
-		if buildType > 0:
-			build_tower(event)
-		elif buildType < 0:
-			build_building(event)
+	if buildType > 0:
+		build_tower(event)
+	elif buildType < 0:
+		build_building(event)
 
 func build_tower(event):
 		var t = packedTower.instance()
@@ -74,7 +83,7 @@ func build_tower(event):
 			changeMoney(-t.cost)
 			t.set_pos(event.pos)
 			add_child(t)
-			buildHelp.set_hidden(true)
+			#buildHelp.set_hidden(true)
 
 
 func build_building(event):
@@ -85,7 +94,7 @@ func build_building(event):
 			changeMoney(-b.cost)
 			b.set_pos(event.pos)
 			add_child(b)
-			buildHelp.set_hidden(true)
+			#buildHelp.set_hidden(true)
 
 func Col_in_UIshape_List(pos,shape):
 	for node in get_tree().get_nodes_in_group("UIshapes"):

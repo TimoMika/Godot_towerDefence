@@ -1,18 +1,19 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://level/level.gd" type="Script" id=1]
 [ext_resource path="res://level/Lv1/BackLv1.png" type="Texture" id=2]
-[ext_resource path="res://loadGegner.gd" type="Script" id=3]
-[ext_resource path="res://fonts/openSans18.fnt" type="BitmapFont" id=4]
-[ext_resource path="res://fonts/openSans25.fnt" type="BitmapFont" id=5]
-[ext_resource path="res://tower/laserTower/LaserTowerMenue.png" type="Texture" id=6]
-[ext_resource path="res://tower/schussTower/SchussTowerMenue.png" type="Texture" id=7]
-[ext_resource path="res://tower/blitzTower/BlitzTowerMenue.png" type="Texture" id=8]
-[ext_resource path="res://tower/rocketTower/RocketTowerMenue.png" type="Texture" id=9]
-[ext_resource path="res://buildings/generator/GeneratorMenue.png" type="Texture" id=10]
-[ext_resource path="res://tower/schussTower/SchussTowerBuildHelp.png" type="Texture" id=11]
-[ext_resource path="res://tower/schussTower/shape.tres" type="Shape2D" id=12]
-[ext_resource path="res://level/Ziel.png" type="Texture" id=13]
+[ext_resource path="res://level/PauseMenue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://loadGegner.gd" type="Script" id=4]
+[ext_resource path="res://fonts/openSans18.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://fonts/openSans25.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://tower/laserTower/LaserTowerMenue.png" type="Texture" id=7]
+[ext_resource path="res://tower/schussTower/SchussTowerMenue.png" type="Texture" id=8]
+[ext_resource path="res://tower/blitzTower/BlitzTowerMenue.png" type="Texture" id=9]
+[ext_resource path="res://tower/rocketTower/RocketTowerMenue.png" type="Texture" id=10]
+[ext_resource path="res://buildings/generator/GeneratorMenue.png" type="Texture" id=11]
+[ext_resource path="res://tower/schussTower/SchussTowerBuildHelp.png" type="Texture" id=12]
+[ext_resource path="res://tower/schussTower/shape.tres" type="Shape2D" id=13]
+[ext_resource path="res://level/Ziel.png" type="Texture" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -34,21 +35,32 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 258.36, 0 )
+transform/pos = Vector2( 253.473, 1.03613 )
 texture = ExtResource( 2 )
 centered = false
 
+[node name="PauseMenue" parent="." instance=ExtResource( 3 )]
+
+process/pause_mode = 2
+visibility/visible = false
+margin/left = 615.0
+margin/top = 174.0
+margin/right = 954.0
+margin/bottom = 522.0
+
 [node name="Path" type="Path2D" parent="."]
 
+process/pause_mode = 1
 transform/pos = Vector2( 2, 2 )
 curve = null
-script/script = ExtResource( 3 )
+script/script = ExtResource( 4 )
 frequenz = 10.0
 typ = 0
 anzahl = 30
 
 [node name="Timer" type="Timer" parent="."]
 
+process/pause_mode = 1
 process_mode = 1
 wait_time = 1.0
 one_shot = false
@@ -66,7 +78,7 @@ margin/left = 390.0
 margin/top = 10.0
 margin/right = 452.0
 margin/bottom = 28.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Money:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -84,7 +96,7 @@ margin/left = 1020.0
 margin/top = 10.0
 margin/right = 1276.0
 margin/bottom = 35.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 range/min = 0.0
 range/max = 1.0
 range/step = 0.0
@@ -107,7 +119,7 @@ margin/top = 10.0
 margin/right = 996.0
 margin/bottom = 35.0
 custom_styles/fg = SubResource( 1 )
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 range/min = 0.0
 range/max = 1.0
 range/step = 1.0
@@ -121,6 +133,7 @@ percent/visible = true
 "Gui_item",
 ]]
 
+process/pause_mode = 1
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -128,7 +141,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 256.0
-margin/bottom = 720.0
+margin/bottom = 645.0
 alignment = 0
 __meta__ = {
 "_edit_lock_": true
@@ -144,12 +157,12 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 256.0
 margin/bottom = 70.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Laser Tower"
-icon = ExtResource( 6 )
+icon = ExtResource( 7 )
 flat = false
 
 [node name="SchussTowerButton" type="Button" parent="TowerBuyMenueContainer"]
@@ -162,12 +175,12 @@ margin/left = 0.0
 margin/top = 74.0
 margin/right = 256.0
 margin/bottom = 144.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Schuss Tower"
-icon = ExtResource( 7 )
+icon = ExtResource( 8 )
 flat = false
 
 [node name="BlitzTowerButton" type="Button" parent="TowerBuyMenueContainer"]
@@ -180,12 +193,12 @@ margin/left = 0.0
 margin/top = 148.0
 margin/right = 256.0
 margin/bottom = 218.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Blitz Tower"
-icon = ExtResource( 8 )
+icon = ExtResource( 9 )
 flat = false
 
 [node name="RocketTowerButton" type="Button" parent="TowerBuyMenueContainer"]
@@ -198,12 +211,12 @@ margin/left = 0.0
 margin/top = 222.0
 margin/right = 256.0
 margin/bottom = 292.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Rocket Tower"
-icon = ExtResource( 9 )
+icon = ExtResource( 10 )
 flat = false
 
 [node name="GeneratorButton" type="Button" parent="TowerBuyMenueContainer"]
@@ -216,31 +229,32 @@ margin/left = 0.0
 margin/top = 296.0
 margin/right = 256.0
 margin/bottom = 366.0
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Generator"
-icon = ExtResource( 10 )
+icon = ExtResource( 11 )
 flat = false
 
 [node name="BuildHelp" type="Sprite" parent="."]
 
+process/pause_mode = 1
 visibility/visible = false
 visibility/opacity = 0.7
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="BuildHelpShape" type="CollisionShape2D" parent="BuildHelp"]
 
 visibility/visible = false
-shape = ExtResource( 12 )
+shape = ExtResource( 13 )
 trigger = false
 _update_shape_index = -1
 
 [node name="Sprite_ziel" type="Sprite" parent="."]
 
 transform/pos = Vector2( 1211.93, 478.241 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
 [connection signal="pressed" from="TowerBuyMenueContainer/LaserTowerButton" to="." method="_on_LaserTowerButton_pressed"]
 
