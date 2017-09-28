@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Main_Menue.gd" type="Script" id=1]
 [ext_resource path="res://Background.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://level/Lv2/BackLv2_icon.png" type="Texture" id=5]
 [ext_resource path="res://fonts/openSans50.fnt" type="BitmapFont" id=6]
 [ext_resource path="res://fonts/openSans18.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://fonts/openSans25.fnt" type="BitmapFont" id=8]
+[ext_resource path="res://BackButton.png" type="Texture" id=9]
 
 [node name="Menue" type="Node"]
 
@@ -21,22 +23,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainMenue" type="VBoxContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 360.0
-margin/top = 150.0
-margin/right = 854.0
-margin/bottom = 600.0
+margin/left = 405.0
+margin/top = 163.0
+margin/right = 899.0
+margin/bottom = 613.0
 alignment = 0
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="MenuButton_SelectLevel" type="MenuButton" parent="VBoxContainer"]
+[node name="KampainButton" type="Button" parent="MainMenue"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -48,16 +47,16 @@ margin/right = 494.0
 margin/bottom = 36.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
-click_on_press = true
-enabled_focus_mode = 0
+enabled_focus_mode = 2
 shortcut = null
-text = "Select Level"
+text = "Kampain"
 flat = false
-items = [ "Level 1", ExtResource( 4 ), false, false, false, 0, 0, null, "", false, "Level 2", ExtResource( 5 ), false, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="MenuButton_Quit" type="Button" parent="VBoxContainer"]
+[node name="SurvivalButton" type="Button" parent="MainMenue"]
 
-visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -68,11 +67,54 @@ margin/right = 494.0
 margin/bottom = 76.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Survival"
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MenuButton_SelectLevel" type="MenuButton" parent="MainMenue"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 80.0
+margin/right = 494.0
+margin/bottom = 116.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 0
+shortcut = null
+text = "Select Level"
+flat = false
+items = [ "Level 1", ExtResource( 4 ), false, false, false, 0, 0, null, "", false, "Level 2", ExtResource( 5 ), false, false, false, 1, 0, null, "", false ]
+
+[node name="MenuButton_Quit" type="Button" parent="MainMenue"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 80.0
+margin/right = 494.0
+margin/bottom = 116.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
 click_on_press = true
 enabled_focus_mode = 0
 shortcut = null
 text = "Beenden"
 flat = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Title" type="Label" parent="."]
 
@@ -111,7 +153,139 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[connection signal="pressed" from="VBoxContainer/MenuButton_Quit" to="." method="_on_MenuButton_Quit_pressed"]
+[node name="LevelSelectMenue" type="VBoxContainer" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 360.0
+margin/top = 207.0
+margin/right = 949.0
+margin/bottom = 339.0
+alignment = 0
+
+[node name="Label" type="Label" parent="LevelSelectMenue"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 589.0
+margin/bottom = 30.0
+custom_fonts/font = ExtResource( 3 )
+text = "Select Level"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HSeparator" type="HSeparator" parent="LevelSelectMenue"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 34.0
+margin/right = 589.0
+margin/bottom = 37.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelectMenue"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 41.0
+margin/right = 589.0
+margin/bottom = 92.0
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level1" type="Button" parent="LevelSelectMenue/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 133.0
+margin/top = 0.0
+margin/right = 292.0
+margin/bottom = 51.0
+custom_fonts/font = ExtResource( 8 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Level 1"
+icon = ExtResource( 4 )
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level2" type="Button" parent="LevelSelectMenue/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 296.0
+margin/top = 0.0
+margin/right = 455.0
+margin/bottom = 51.0
+custom_fonts/font = ExtResource( 8 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Level 2"
+icon = ExtResource( 5 )
+flat = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="LevelSelectMenue"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 96.0
+margin/right = 589.0
+margin/bottom = 132.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Back"
+icon = ExtResource( 9 )
+flat = false
+
+[connection signal="pressed" from="MainMenue/KampainButton" to="." method="_on_KampainButton_pressed"]
+
+[connection signal="pressed" from="MainMenue/SurvivalButton" to="." method="_on_SurvivalButton_pressed"]
+
+[connection signal="pressed" from="MainMenue/MenuButton_Quit" to="." method="_on_MenuButton_Quit_pressed"]
+
+[connection signal="pressed" from="LevelSelectMenue/HBoxContainer/Level1" to="." method="_on_Level1_pressed"]
+
+[connection signal="pressed" from="LevelSelectMenue/HBoxContainer/Level2" to="." method="_on_Level2_pressed"]
+
+[connection signal="pressed" from="LevelSelectMenue/Button" to="." method="_on_Button_pressed"]
 
 

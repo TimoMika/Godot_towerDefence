@@ -6,6 +6,8 @@ export var typ = 0
 export var anzahl = 30
 var map = 1
 var lv = 1
+var gameType = 1
+var allWaveSpawned = false
 
 var packedGegner = load("res://gegner/gegner.tscn")
 var spawnFile = load("res://level/Lv" + str(map) + "/spawnFile" + str(lv) + ".gd").new()
@@ -25,17 +27,20 @@ func get_newGegner(id):
 	
 	g.get_node("Sprite").set_texture(load("res://gegner/GegnerLv" + str(id) + ".png"))
 	if id == 1:
-		g.set_health(500)
-		g.set_speed(30)
-		g.set_loot(30)
+		g.set_health(600)
+		g.set_speed(40)
+		g.set_loot(20)
 	if id == 2:
-		g.set_speed(100)
-		g.set_health(300)
-		g.set_loot(60)
+		g.set_speed(90)
+		g.set_health(400)
+		g.set_loot(50)
 	return g
 	
 func curve_loaded():
-	spawnNextGroup()
+	if gameType == 1:
+		spawnNextGroup()
+	else:
+		spawnNextGroup()
 
 func spawnNextGroup():
 	#print("current wave: ",cWave()," current group: ",cGroup())
@@ -54,6 +59,7 @@ func spawnNextGroup():
 	#if all groups did spawn and there no wave left
 	else:
 		removeAllConnections()
+		allWaveSpawned = true
 		print("all waves spawned")
 
 func startGroup():

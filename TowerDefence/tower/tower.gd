@@ -10,9 +10,9 @@ var tarGeg
 
 
 var dmg = 10
-var cost = 40
+var cost = 50
 var lv = 1
-var energyCost = 2
+var energyCost = 5
 var schootRange = 200
 
 onready var level = get_node("/root/Level")

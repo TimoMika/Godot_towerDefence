@@ -18,7 +18,9 @@ func _ready():
 	timer.set_wait_time(tick)
 	timer.start()
 	timer.connect("timeout",self,"shoot")
-	dmg = 50
+	dmg = 60
+	cost = 200
+	energyCost = 15
 
 func _process(delta):
 	if level.energy >= energyCost:

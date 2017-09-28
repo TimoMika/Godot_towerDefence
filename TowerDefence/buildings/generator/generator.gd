@@ -7,8 +7,8 @@ onready var level = get_node("/root/Level")
 var botTex = load("res://buildings/generator/Generator.png")
 var topTex = null
 var shape = load("res://buildings/generator/shape.tres")
-var energyProduction = 10
-var cost = 10
+var energyProduction = 20
+var cost = 20
 var lv = 1
 
 var timer = Timer.new()

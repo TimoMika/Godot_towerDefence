@@ -10,49 +10,49 @@ var waves=[
 [{#wave1
 	amount = 5,
 	type = 1,
+	tick = 2,
+	pause = 5
+}],
+[{#wave2
+	amount = 5,
+	type = 2,
+	tick = 1,
+	pause = 2
+},{
+	amount = 5,
+	type = 1,
 	tick = 3,
-	pause = 20
-}],
-[{#wave2
-	amount = 2,
-	type = 2,
+	pause = 5
+},{
+	amount = 10,
+	type = 1,
 	tick = 1,
 	pause = 5
 },{
-	amount = 2,
+	amount = 10,
 	type = 2,
-	tick = 1,
-	pause = 4
-},{
-	amount = 2,
-	type = 2,
-	tick = 0.5,
-	pause = 4
-},{
-	amount = 2,
-	type = 2,
-	tick = 0.5,
-	pause = 40
+	tick = 2,
+	pause = 5
 }],
 [{#wave2
-	amount = 20,
+	amount = 15,
 	type = 2,
-	tick = 0.1,
-	pause = 5
+	tick = 1,
+	pause = 2
 },{
 	amount = 20,
 	type = 1,
 	tick = 1,
-	pause = 10
+	pause = 4
+},{
+	amount = 20,
+	type = 2,
+	tick = 0.8,
+	pause = 5
 },{
 	amount = 40,
 	type = 2,
-	tick = 1,
-	pause = 10
-},{
-	amount = 100,
-	type = 2,
-	tick = 0.3,
-	pause = 4
+	tick = 0.5,
+	pause = 2
 }]
 ]

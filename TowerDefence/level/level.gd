@@ -29,9 +29,10 @@ var buildType = 1
 func _ready():
 	set_process_input(true)
 	set_process(true)
-	loadLvl(get_node("/root/global").getMapNum(),1)
+	var global = get_node("/root/global")
+	loadLvl(global.getMapNum(),1,global.getGameType())
 	
-	changeMoney(1000)
+	changeMoney(500)
 	changeEnergy(100)
 	changeLives(100)
 	
@@ -59,8 +60,10 @@ func _process(delta):
 			buildHelp.set_modulate(Color(1,2,1))
 			#print("baue")
 			#buildHelp.set_hidden(true)
-
 	changeEnergy(1*delta)
+	if get_node("Path").allWaveSpawned && get_node("Path").get_child_count() <= 0:
+		get_tree().set_pause(true)
+		get_node("WinButton").set_hidden(false)
 
 func build(event):
 	if buildType > 0:
@@ -115,7 +118,7 @@ func Col_in_UIshape_List(pos,shape):
 		
 	return false
 
-func loadLvl(mapNumber,lvNumber):
+func loadLvl(mapNumber,lvNumber,gameType):
 	#setup Background
 	var bg = load("res://level/Lv" + str(mapNumber) + "/BackLv" + str(mapNumber) + ".png")
 	get_node("Sprite").set_texture(bg)
@@ -123,6 +126,7 @@ func loadLvl(mapNumber,lvNumber):
 	var path = get_node("Path")
 	path.map = mapNumber
 	path.lv = lvNumber
+	path.gameType = gameType
 	var curve = load("res://level/Lv" + str(mapNumber) + "/curveMap" + str(mapNumber) + ".tres")
 	path.set_curve(curve)
 	
@@ -162,14 +166,14 @@ func getNodePos(curve, offset):
 func changeMoney(val):
 	money += val
 	get_node("MoneyLabel").set_text("Money: " + str(money))
-	
+
 func changeEnergy(val):
 	energy += val
 	if energy > maxEnergy:
 		energy = maxEnergy
 	var value = float(energy)/float(maxEnergy)
 	get_node("EnergyBar").set_value(value)
-	
+
 func changeLives(val):
 	lives += val
 	if lives > maxLives:
@@ -192,7 +196,6 @@ func _on_SchussTowerButton_pressed():
 	buildType = 2
 	print("SchussTower")
 
-
 func _on_BlitzTowerButton_pressed():
 	buildHelp.set_texture(blitzTowerBuildHelp)
 	buildHelpShape.set_shape(load("res://tower/blitzTower/shape.tres"))
@@ -213,3 +216,7 @@ func _on_GeneratorButton_pressed():
 	buildHelp.set_hidden(false)
 	buildType = -1
 	print("Generator")
+
+func _on_WinButton_pressed():
+	get_tree().set_pause(false)
+	get_tree().change_scene("res://Main_Menue.tscn")

@@ -17,7 +17,9 @@ func _ready():
 	cover = Sprite.new()
 	bot.add_child(cover)
 	cover.set_texture(coverTex)
-	dmg = 25
+	dmg = 20
+	cost = 150
+	energyCost = 10
 	set_draw_behind_parent(false)
 
 func _draw():
